@@ -1,0 +1,40 @@
+{% for entry in craft.entries.section('home').type('section2') %}
+
+  
+  {% set blockImage = "" %}
+  {% for asset in entry.image %}
+  	{% set blockImage = asset.url %}
+  {% endfor %}
+  
+  <section>
+  
+  	<div class="container">
+  	
+  		{% if loop.index is not divisibleby(2) %}
+  		
+  			<div class="col-md-5">
+  				<img src="{{ blockImage }}" alt="{{ entry.title }}" />
+  			</div>
+  		
+  			<div class="col-md-6 col-md-push-1">
+  				<h1>{{ entry.title }}<span>&period;</span></h1>
+  				<p>{{ entry.description }}</p>
+  			</div>
+  			
+  		{% else %}
+  		
+  		<div class="col-md-6">
+			<h1>{{ entry.title }}<span>&period;</span></h1>
+			<p>{{ entry.description }}</p>
+		</div>
+		
+		<div class="col-md-5 col-md-offset-1">
+			<img src="{{ blockImage }}" alt="{{ entry.title }}" />
+		</div>
+		
+		{% endif %}
+		
+  	</div>
+  </section>
+  {% endfor %}
+  <div id="section-divider"></div>

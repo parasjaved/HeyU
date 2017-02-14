@@ -1,0 +1,48 @@
+{% for entry in craft.entries.section('home').type('hero') %}
+
+<nav class="navbar navbar-toggleable-md navbar-fixed-top navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  {% set logoImage = "" %}
+  {% for asset in entry.logoImage %}
+  	{% set logoImage = asset.url %}
+  {% endfor %}
+  
+  <a class="navbar-brand" href="{{ siteUrl }}"><img src="{{ logoImage }}" alt="HayU"></a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">ABOUT<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">FAQ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">SUPPORT</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link no-right-margin" href="#">BLOG</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="col-md-6">
+    	<h1>{{ entry.title }}</h1>
+    	<h3>{{ entry.heroSubtitle }}</h3>
+    	<!-- Secondary, outline button -->
+    	<button type="button" class="btn btn-secondary round-btn">{{ entry.ctaButtonText }}</button>
+    </div>
+    <div class="col-md-6">
+    	{% set heroImage = "" %}
+    	{% for asset in entry.heroImage %}
+    		{% set heroImage = asset.url %}
+    	{% endfor %}
+    	<img src="{{ heroImage }}" alt="iPhone" />
+    </div>
+  </div>
+</div>
+{% endfor %}

@@ -1,0 +1,36 @@
+
+
+	<section id="reviews">
+	
+		<div class="container">
+		{% set sectionTitle = "What people say"  %}
+		<h1>{{ sectionTitle }}<span>&period;</span></h1>
+		{% for entry in craft.entries.section('home').type('reviews') %}
+		
+		
+		
+		{% set avatar = "" %}
+		{% for asset in entry.avatar %}
+			{% set avatar = asset.url %}
+		{% endfor %}
+		
+		
+		
+			<div class="card clear-fix">
+			  <div class="card-block">
+			    <p class="card-text review">{{ entry.review }}</p>
+			    <h4 class="card-title company-name">{{ entry.company }}</h4>
+			  </div>
+			  <div class="reviewer-info clear-fix" style="display: block;">
+			  	<img class="card-img-bottom avatar" src="{{ avatar }}" alt="{{ entry.reviewer }}">
+			  	<h3 class="reviewer">{{ entry.reviewer }}</h3>
+			  	<p class="job-title">{{ entry.jobTitle }}</p>
+			  </div>
+			</div>
+			
+			
+			  {% endfor %}	
+		</div>
+	
+	</section>
+
